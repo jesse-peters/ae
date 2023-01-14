@@ -94,3 +94,20 @@ check-format: ## Used by CI to check if code is formatted
 
 lint: ## Runs the linter
 	golangci-lint run
+
+check-licenses: ## Checks if the licenses are up to date
+	@echo "Checking licenses..."
+	@./scripts/license-check.sh \
+              -l ./scripts/license-file.txt \
+              -d . \
+              -e "vendor" \
+              -p '*.go' \
+              -n
+
+fix-licenses: ## Fixes the licenses
+	@echo "Fixing licenses..."
+	@./scripts/license-check.sh \
+              -l ./scripts/license-file.txt \
+              -d . \
+              -e "vendor" \
+              -p '*.go' \
